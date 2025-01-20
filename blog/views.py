@@ -4,6 +4,7 @@ from .models import Post
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login
+from .forms import PostForm
 # Create your views here.
 
 @login_required()
@@ -75,5 +76,21 @@ def login_view(request):
         log_form = AuthenticationForm()
 
     return render(request,"blog/login.html",{"log_form":log_form})
+
+@login_required()
+def create_post(request):
+    if request.method == "POST":
+        create_form = PostForm(request.post)
+        if create_form.is_valid():
+            post = create_form.save(commit=False)
+            post.author = request.user
+            if request.user.is_superuser:
+                post.status = "published"
+            post.save()
+        return redirect("blog:feed")
+    else:
+        create_form = PostForm()
+
+    return render(request,"blog/new.html",{"create_form":create_form})
 
 
