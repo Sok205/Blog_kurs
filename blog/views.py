@@ -1,11 +1,14 @@
 from xxsubtype import bench
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
+from django.contrib.auth import login
 # Create your views here.
 
+@login_required()
 def show_all_posts(request):
     """
     Return preview of all posts
@@ -16,6 +19,7 @@ def show_all_posts(request):
     feed = Post.objects.filter(status="published")
     return render(request,"blog/feed.html",{"feed":feed})
 
+@login_required()
 def show_post(request, post_id):
     """
     Return details of a single post
@@ -29,7 +33,6 @@ def show_post(request, post_id):
 
 def register_view(request):
     """
-
     TODO: Return two-step registration page for user
 
     Currently: Returns one-step registration page for user
@@ -50,7 +53,7 @@ def register_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Registration successful. You can now log in.")
-            return redirect('posts:feed')
+            return redirect('posts:login')
         else:
             messages.error(request, "Registration failed. Please correct the errors below.")
     else:
@@ -59,9 +62,18 @@ def register_view(request):
 
 def login_view(request):
     """
-    ret
+    Return a login view page from which a user can log in to his account
+
+    Takes data from form located at /blog/login.html
     :param request:
     :return:
     """
-    pass
+    if request.method == "POST":
+        form_login = AuthenticationForm(request,data=request.POST)
+        if form_login.is_valid():
+            login(request, form_login.get_user())
+            return redirect("posts:feed")
+    else:
+        form_login = AuthenticationForm()
+    return render(request,"blog/login.html", {"form_login":"form_login"})
 
