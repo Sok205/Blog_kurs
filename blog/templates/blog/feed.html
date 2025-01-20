@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% extends 'blog/Base.html' %}
 {% block contents %}
 {% for post in feed %}
     <div>
-    <h1>{{post.title}}</h1>
+    {#Żeby namespace był zarejestrowany to w pliku url musimy ustawić app_name#}
+    <h1><a href = "{% url 'posts:details' post.id %}">{{post.title}}</a></h1>
     <p>published by: {{post.author}}</p>
         <label>
             <textarea>{{post.content}}</textarea>
@@ -18,5 +12,3 @@
     </div>
 {% endfor %}
 {%  endblock %}
-</body>
-</html>
