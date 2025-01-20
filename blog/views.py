@@ -1,5 +1,3 @@
-from xxsubtype import bench
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
@@ -69,11 +67,13 @@ def login_view(request):
     :return:
     """
     if request.method == "POST":
-        form_login = AuthenticationForm(request,data=request.POST)
-        if form_login.is_valid():
-            login(request, form_login.get_user())
+        log_form = AuthenticationForm(request,data = request.POST)
+        if log_form.is_valid():
+            login(request, log_form.get_user())
             return redirect("posts:feed")
     else:
-        form_login = AuthenticationForm()
-    return render(request,"blog/login.html", {"form_login":"form_login"})
+        log_form = AuthenticationForm()
+
+    return render(request,"blog/login.html",{"log_form":log_form})
+
 
