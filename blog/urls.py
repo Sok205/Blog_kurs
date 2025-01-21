@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path,include
-from .views import show_all_posts, show_post, register_view, login_view, create_post, user_view
+from .views import show_all_posts, show_post, register_view, login_view, create_post, user_view, user_logout
 
 app_name = "posts"
 urlpatterns = [
@@ -42,4 +42,8 @@ urlpatterns = [
     # GET /user_view/  (Display user info)
     # [Optionally POST /user_view/ if editing user data]
     path("user_view/", user_view, name="user_view"),
+    # -----------------------------------------------------
+    # Logs out the current user and redirect him to homepage
+    path("user_logout/",user_logout,name="user_logout"),
+
 ]

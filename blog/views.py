@@ -3,11 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import PostForm
 # Create your views here.
 
-@login_required()
+
 def show_all_posts(request):
     """
     Return preview of all posts
@@ -101,9 +101,22 @@ def create_post(request):
 
 @login_required()
 def user_view(request):
+    """
+    Creates a user_view where he can view his posts
+    :param request:
+    :return:
+    """
     current_user = request.user
     user_id = current_user.id
     user_posts = Post.objects.filter(author = user_id)
     return render(request,"blog/user_view.html",{"user_posts":user_posts})
 
+def user_logout(request):
+    """
+    Logs out the user
+    :param request:
+    :return:
+    """
+    logout(request)
+    return redirect("posts:home")
 

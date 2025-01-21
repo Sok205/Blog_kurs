@@ -33,9 +33,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'posts:user_view' %}">Welcome {{ user.username }}</a>
                         </li>
-                    <li class = "nav-item">
-                        <a class="nav-link" href="{% url 'posts:create_post' %}">Create Post</a>
-                    </li>
+                        <li class = "nav-item">
+                            <a class="nav-link" href="{% url 'posts:create_post' %}">Create Post</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a class = "nav-link" href="{% url 'posts:user_logout' %}">Logout</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
