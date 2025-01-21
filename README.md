@@ -1,4 +1,4 @@
-# My Django Website Project
+# Blog Project
 
 A simple Django-based web application using HTML, Bootstrap, and Django. This README will guide you through setting up and running the project on your local machine.
 
