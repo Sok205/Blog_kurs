@@ -79,18 +79,31 @@ def login_view(request):
 
 @login_required()
 def create_post(request):
+    """
+    return a create_post. It allows user to add posts if he is logged in
+    :param request:
+    :return:
+    """
     if request.method == "POST":
-        create_form = PostForm(request.post)
+        create_form = PostForm(request.POST)
         if create_form.is_valid():
             post = create_form.save(commit=False)
             post.author = request.user
             if request.user.is_superuser:
                 post.status = "published"
             post.save()
-        return redirect("blog:feed")
+        return redirect("posts:feed")
     else:
         create_form = PostForm()
 
-    return render(request,"blog/new.html",{"create_form":create_form})
+    return render(request, "blog/create_post.html", {"create_form":create_form})
+
+
+@login_required()
+def user_view(request):
+    current_user = request.user
+    user_id = current_user.id
+    user_posts = Post.objects.filter(author = user_id)
+    return render(request,"blog/user_view.html",{"user_posts":user_posts})
 
 
