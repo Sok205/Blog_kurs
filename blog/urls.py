@@ -45,5 +45,4 @@ urlpatterns = [
     # -----------------------------------------------------
     # Logs out the current user and redirect him to homepage
     path("user_logout/",user_logout,name="user_logout"),
-
 ]

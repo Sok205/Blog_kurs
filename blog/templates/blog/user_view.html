@@ -5,21 +5,21 @@
         <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <h1 class="card-title">
-                        <a  class="text-decoration-none text-primary">
-                            {{ post.title }}
+                        <a href="{% url 'posts:details' user_post.id %}" class="text-decoration-none text-primary">
+                            {{ user_post.title }}
                         </a>
                     </h1>
-                    <p class="text-muted">Published by: <strong>{{ post.author }}</strong></p>
+                    <p class="text-muted">Published by: <strong>{{ user_post.author }}</strong></p>
 
                     <div class="mb-3">
-                        <label for="post-content-{{ post.id }}" class="form-label fw-bold">Content:</label>
-                        <textarea class="form-control" id="post-content-{{ post.id }}" rows="4" readonly>
-                            {{ post.content }}
+                        <label for="post-content-{{ user_post.id }}" class="form-label fw-bold">Content:</label>
+                        <textarea class="form-control" id="post-content-{{ user_post.id }}" rows="4" readonly>
+                            {{ user_post.content }}
                         </textarea>
                     </div>
 
                     <p class="text-end text-muted">
-                        Published on: <em>{{ post.posted_at }}</em>
+                        Published on: <em>{{ user_post.posted_at }}</em>
                     </p>
                 </div>
             </div>

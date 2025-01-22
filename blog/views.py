@@ -1,3 +1,6 @@
+from pydoc import pager
+from wsgiref.util import request_uri
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
@@ -5,9 +8,11 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from .forms import PostForm
+from django.core.paginator import Paginator
 # Create your views here.
 
 
+@login_required()
 def show_all_posts(request):
     """
     Return preview of all posts
@@ -16,7 +21,11 @@ def show_all_posts(request):
     :return: render
     """
     feed = Post.objects.filter(status="published")
-    return render(request,"blog/feed.html",{"feed":feed})
+    page_number = request.GET.get("page",1)
+    per_page = request.GET.get("per_page",10)
+    paginator = Paginator(feed, per_page)
+    page_obj = paginator.page(page_number)
+    return render(request,"blog/feed.html",{"page_obj":page_obj})
 
 @login_required()
 def show_post(request, post_id):
@@ -28,6 +37,14 @@ def show_post(request, post_id):
     """
     post = None
     post = get_object_or_404(Post, id = post_id, status ="published")
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+
+    if request.user == post.author:
+        form = PostForm(instance=post)
+
     return render(request,"blog/details.html",{"post":post})
 
 def register_view(request):

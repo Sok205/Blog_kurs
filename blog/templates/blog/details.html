@@ -1,6 +1,15 @@
 {%  extends "blog/Base.html"  %}
 {% block contents %}
-    <h1>Post</h1>
-    <p>{{ post.title }}</p>
 
+    {% if form %}
+    <form method="post">
+        {% csrf_token %}
+        {{ from.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    {% else %}
+    <h1>{{ post.title }}</h1>
+        <p><small> by {{ post.author }} posted at {{ post.posted_at|date }} </small></p>
+        <p>{{ post.content }}</p>
+    {% endif %}
 {% endblock %}

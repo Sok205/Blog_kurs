@@ -17,6 +17,8 @@ class Post(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, default = "draft", max_length = 10)
     posted_at = models.DateTimeField(blank = True, null = True)
 
+    # image = models.ImageField(upload_to = "posts/%Y/%m/%d", null=True, blank=True)
+
     class Meta:
         db_table = 'posts'
 
