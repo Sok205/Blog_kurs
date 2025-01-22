@@ -36,16 +36,17 @@ def show_post(request, post_id):
     :return:
     """
     post = None
+    form_update = None
     post = get_object_or_404(Post, id = post_id, status ="published")
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
+        form_update = PostForm(request.POST, instance=post)
+        if form_update.is_valid():
+            form_update.save()
 
     if request.user == post.author:
-        form = PostForm(instance=post)
+        form_update = PostForm(instance=post)
 
-    return render(request,"blog/details.html",{"post":post})
+    return render(request,"blog/details.html",{"post":post,"form_update":form_update})
 
 def register_view(request):
     """
