@@ -9,4 +9,11 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ["title","content","image","status"]
 
+class UpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = ["title","content","status"]
+
+
 

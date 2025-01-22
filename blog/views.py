@@ -4,7 +4,7 @@ from .models import Post
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from .forms import PostForm
+from .forms import PostForm, UpdateForm
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -36,12 +36,12 @@ def show_post(request, post_id):
     form_update = None
     post = get_object_or_404(Post, id = post_id, status ="published")
     if request.method == "POST":
-        form_update = PostForm(request.POST,request.FILE, instance=post)
+        form_update = UpdateForm(request.POST, instance=post)
         if form_update.is_valid():
             form_update.save()
 
     if request.user == post.author:
-        form_update = PostForm(instance=post)
+        form_update = UpdateForm(instance=post)
 
     return render(request,"blog/details.html",{"post":post,"form_update":form_update})
 
