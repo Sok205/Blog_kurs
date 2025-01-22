@@ -13,14 +13,23 @@
                         </a>
                     </h1>
                     <p class="text-muted">Published by: <strong>{{ post.author }}</strong></p>
-
-                    <div class="mb-3">
-                        <label for="post-content-{{ post.id }}" class="form-label fw-bold">Content:</label>
-                        <textarea class="form-control" id="post-content-{{ post.id }}" rows="4" readonly>
-                            {{ post.content }}
-                        </textarea>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="post-content-{{ post.id }}" class="form-label fw-bold">Content:</label>
+                            <textarea class="form-control" id="post-content-{{ post.id }}" rows="4" readonly>
+                                {{ post.content }}
+                            </textarea>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            {% if post.image %}
+                                <div class="d-inline-block border border-2 border-primary rounded shadow p-2">
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded">
+                                </div>
+                            {% else %}
+                                <p class="text-muted fst-italic">No image available</p>
+                            {% endif %}
+                        </div>
                     </div>
-
                     <p class="text-end text-muted">
                         Published on: <em>{{ post.posted_at }}</em>
                     </p>

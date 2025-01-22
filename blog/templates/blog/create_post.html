@@ -4,7 +4,7 @@
 {% block contents %}
     <h1 class="text-center mb-4">Create New Post</h1>
 <div class="container">
-  <form method="post" class="bg-light p-4 rounded shadow-sm">
+  <form method="post" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm" >
     {% csrf_token %}
     <div class="mb-3">
         {{ create_form|crispy }}

@@ -36,7 +36,7 @@ def show_post(request, post_id):
     form_update = None
     post = get_object_or_404(Post, id = post_id, status ="published")
     if request.method == "POST":
-        form_update = PostForm(request.POST, instance=post)
+        form_update = PostForm(request.POST,request.FILE, instance=post)
         if form_update.is_valid():
             form_update.save()
 
@@ -100,7 +100,7 @@ def create_post(request):
     :return:
     """
     if request.method == "POST":
-        create_form = PostForm(request.POST)
+        create_form = PostForm(request.POST,request.FILES)
         if create_form.is_valid():
             post = create_form.save(commit=False)
             post.author = request.user
