@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block contents %}
     <h1 class="text-center mb-4">Create New Post</h1>
@@ -6,7 +7,7 @@
   <form method="post" class="bg-light p-4 rounded shadow-sm">
     {% csrf_token %}
     <div class="mb-3">
-      {{ create_form.as_p }}
+        {% crispy create_form %}
     </div>
     <button type="submit" class="btn btn-primary w-100">Add New Post</button>
   </form>

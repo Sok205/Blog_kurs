@@ -12,7 +12,6 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 
-@login_required()
 def show_all_posts(request):
     """
     Return preview of all posts

@@ -6,7 +6,7 @@
   <form method="post" class="bg-light p-4 rounded shadow-sm">
     {% csrf_token %}
     <div class="mb-3">
-        {{ log_form.as_p }}
+        {% crispy log_form %}
     </div>
     <button type="submit" class="btn btn-primary w-100">Login</button>
   </form>
