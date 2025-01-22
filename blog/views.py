@@ -1,6 +1,3 @@
-from pydoc import pager
-from wsgiref.util import request_uri
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
@@ -30,6 +27,7 @@ def show_all_posts(request):
 def show_post(request, post_id):
     """
     Return details of a single post
+    If Post belongs to authenticated user he can update it. Form for updating is located in forms.py
     :param request:
     :param post_id
     :return:

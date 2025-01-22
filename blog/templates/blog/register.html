@@ -10,26 +10,9 @@
             <div class="card shadow-sm p-4">
                 <form action="{% url 'posts:register' %}" method="post" class="needs-validation" novalidate>
                     {% csrf_token %}
-
-                    <!-- Django Form Fields -->
-                    <div class="mb-3">
-                        {% crispy form %}
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                    </div>
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                 </form>
-
-                <!-- Display Messages -->
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert mt-3 {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
             </div>
         </div>
     </div>
