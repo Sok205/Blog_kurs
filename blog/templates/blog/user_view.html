@@ -13,9 +13,9 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="post-content-{{ post.id }}" class="form-label fw-bold">Content:</label>
-                            <p class="form-control" id="post-content-{{ post.id }}" rows="4" readonly>
+                            <textarea class="form-control" id="post-content-{{ post.id }}" rows="4" readonly>
                                 {{ post.content }}
-                            </p>
+                            </textarea>
                         </div>
                         <div class="col-md-6 text-center">
                         {% if post.image %}

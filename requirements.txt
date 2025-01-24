@@ -3,3 +3,4 @@ django-registration
 django-crispy-forms
 crispy-bootstrap5
 Pillow
+sorl-thumbnail

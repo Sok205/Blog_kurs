@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <h1>{{ image.title }}</h1>
+
+        <p>Belongs to the gallery: {{ image.gallery.title }}</p>
+        <img src="{{ image.image.url }}" alt="{{ image.alt }}">
+
+    <p>{{ image.alt }}</p>
+
+{% endblock %}
