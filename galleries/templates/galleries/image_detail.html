@@ -1,13 +1,24 @@
 {% extends "blog/base.html" %}
+{% load thumbnail %}
 
+{% block contents %}
+<div class="container py-4 d-flex justify-content-center">
+    <div class="card shadow-sm border-0" style="max-width: 500px;">
+        <!-- Card Header -->
+        <div class="card-header bg-white border-0 text-center">
+            <h1 class="card-title mb-2">{{ image.title }}</h1>
+            <p class="text-muted mb-0">Belongs to the gallery: <strong>{{ gallery.title }}</strong></p>
+        </div>
 
-{% block content %}
+        <div class="text-center">
+            <img src="{% thumbnail image.image "300x300" crop="center" %}"
+                 alt="{{ image.alt }}"
+                 class="card-img-top img-fluid rounded">
+        </div>
 
-    <h1>{{ image.title }}</h1>
-
-        <p>Belongs to the gallery: {{ image.gallery.title }}</p>
-        <img src="{{ image.image.url }}" alt="{{ image.alt }}">
-
-    <p>{{ image.alt }}</p>
-
+        <div class="card-body text-center">
+            <p class="card-text text-secondary">{{ image.alt }}</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

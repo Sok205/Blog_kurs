@@ -133,5 +133,5 @@ def user_logout(request):
     :return:
     """
     logout(request)
-    return redirect("posts:home")
+    return redirect("posts:login")
 

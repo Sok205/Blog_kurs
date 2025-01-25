@@ -5,6 +5,6 @@ app_name = "galleries"
 
 urlpatterns = [
     path("", gallery_list, name="list"),
-    path("<int:id_id>", gallery_details, name="details"),
-    path("<int:id_id>/<img_id>/", img_details, name="img_details"),
+    path("<int:id_id>/", gallery_details, name="details"),
+    path("<int:id_id>/<int:img_id>/", img_details, name="img_details"),
 ]
