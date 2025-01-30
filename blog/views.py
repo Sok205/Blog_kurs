@@ -34,12 +34,12 @@ def show_post(request, post_id):
     """
     post = None
     form_update = None
-    post = get_object_or_404(Post, id = post_id, status ="published")
+    post = get_object_or_404(Post, id = post_id )
     if request.method == "POST":
         form_update = UpdateForm(request.POST, instance=post)
         if form_update.is_valid():
             form_update.save()
-
+            redirect("posts:user_view")
     if request.user == post.author:
         form_update = UpdateForm(instance=post)
 

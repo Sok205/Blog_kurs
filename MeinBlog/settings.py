@@ -137,3 +137,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+EMAIL_HOST_USER=os.environ.get("BLOG_EMAIL_HOST_USER","")
+EMAIL_HOST_PASSWORD=os.environ.get("BLOG_EMAIL_HOST_PASSWORD","")

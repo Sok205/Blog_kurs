@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% load thumbnail %}
+{% load crispy_forms_tags %}
 
 {% block contents %}
 <div class="container my-5">
@@ -20,6 +21,11 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="col-12">
+            <a href="{% url 'galleries:add_image_to_gallery' gallery.id %}" class="btn btn-primary btn-lg w-100">
+                Add Image to Gallery
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
