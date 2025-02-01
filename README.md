@@ -50,7 +50,11 @@ A simple Django-based web application using HTML, Bootstrap, and Django. This RE
     ```bash
    python manage.py migrate
 
-2. **Start the local development server**
+2. **Create superuser**
+    ```bash
+   python manage.py createsuperuser name_of_your_user
+
+3. **Start the local development server**
     ```bash
    python manage.py runserver
    
