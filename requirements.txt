@@ -1,6 +1,7 @@
-django
-django-registration
-django-crispy-forms
-crispy-bootstrap5
-Pillow
-sorl-thumbnail
+django==5.1.5
+django-registration==5.1.0
+django-crispy-forms==2.3
+crispy-bootstrap5==2024.10
+Pillow==11.1.0
+sorl-thumbnail==12.11.0
+Faker==33.3.1

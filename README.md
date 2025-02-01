@@ -33,7 +33,7 @@ A simple Django-based web application using HTML, Bootstrap, and Django. This RE
 
 1. **Clone the repository**
    ```bash
-   git https://github.com/Sok205/Blog_kurs.git
+   git clone https://github.com/Sok205/Blog_kurs.git
    cd Blog_kurs
 
 2. **Install django**
@@ -57,13 +57,6 @@ A simple Django-based web application using HTML, Bootstrap, and Django. This RE
 ## Project Structure
 - **Project** has a simple structure and everything is well documented (I hope so :) )
 
-
-
-Thought about contribution guidelines przez kilka sekund
-Below is a sample “Contributing” section you might add to your README.md (or a dedicated CONTRIBUTING.md file) in Markdown format. This is just an example—feel free to tailor it to your specific guidelines and workflow.
-
-markdown
-Kopiuj
 ## Contributing
 
 We welcome contributions from the community! Whether it’s bug fixes, new features, or documentation updates, here’s how you can contribute:
